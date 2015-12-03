@@ -9,16 +9,11 @@
     <link href="/css/theme.css" rel="stylesheet">
 </head>
 <body>
-
-#parse("navbar.vm")
-
-
-
-##
-111111111111111111111
+###3llllll
 
 
 
-#parse("foot.vm")
+
+
 </body>
 </html>
