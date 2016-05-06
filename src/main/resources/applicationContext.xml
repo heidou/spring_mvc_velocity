@@ -14,6 +14,7 @@
 
 	<context:property-placeholder location="classpath:config.properties" />
 
+	<import resource="classpath*:heidou-db.xml"/>
 
 	<!-- 拦截器 -->
 	<mvc:interceptors>

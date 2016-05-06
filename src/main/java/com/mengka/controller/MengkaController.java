@@ -1,6 +1,8 @@
 package com.mengka.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.mengka.dao.StudentDAO;
+import com.mengka.model.StudentDO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -19,6 +23,18 @@ import javax.servlet.http.HttpServletRequest;
 public class MengkaController {
 
     private static final Logger log = LoggerFactory.getLogger(MengkaController.class);
+
+    @Resource
+    private StudentDAO studentDAO;
+
+    @RequestMapping(value = "/selectById.do", method = { RequestMethod.GET, RequestMethod.POST })
+    public String selectById(ModelMap map, HttpServletRequest request,
+                        @RequestParam(required = false) String groupName) {
+
+        StudentDO studentDO = studentDAO.selectById(111L);
+        log.info("studentDO = "+studentDO.getName());
+        return "mengka/topic";
+    }
 
     @RequestMapping(value = "/topic.do", method = { RequestMethod.GET, RequestMethod.POST })
     public String topic(ModelMap map, HttpServletRequest request,

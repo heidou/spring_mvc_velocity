@@ -117,7 +117,28 @@
             <artifactId>velocity</artifactId>
             <version>1.7</version>
         </dependency>
-        
+
+		<!-- mybatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.0.9</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.18</version>
+		</dependency>
 	</dependencies>
 
 
@@ -137,11 +158,11 @@
 				<artifactId>maven-jetty-plugin</artifactId>
 				<configuration>
 					<contextPath>/</contextPath>
-					<!--<connectors> -->
-					<!--<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector"> -->
-					<!--<port>8081</port> -->
-					<!--</connector> -->
-					<!--</connectors> -->
+					<connectors>
+					<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+					<port>8081</port>
+					</connector>
+					</connectors>
 					<stopPort>9966</stopPort>
 					<!-- 停止jetty -->
 					<stopKey>foo</stopKey>

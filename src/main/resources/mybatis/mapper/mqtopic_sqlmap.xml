@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="StudentDAO">
+    <resultMap id="StudentMap" type="com.mengka.model.StudentDO">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result property="create_time" column="createTime"/>
+        <result property="modified_time" column="modifiedTime"/>
+    </resultMap>
+
+    <sql id="selectField">
+        <![CDATA[
+		SELECT id,name,create_time,modified_time FROM student
+		]]>
+    </sql>
+
+    <insert id="insert" parameterType="Student">
+        <![CDATA[
+        INSERT INTO student
+        ( id,
+          name,
+          create_time,
+          modified_time
+        ) VALUES (
+          #{id},
+          #{name},
+          now(),
+		  now()
+        )
+         ]]>
+    </insert>
+
+    <update id="update" parameterType="Student">
+        update student
+        <set>
+            <if test="name != null">
+                name = #{name} ,
+            </if>
+            modified_time = current_timestamp
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="selectById" resultMap="StudentMap" parameterType="java.lang.Long">
+        <include refid="StudentDAO.selectField"/>
+        <![CDATA[
+		    WHERE ID=#{id} LIMIT 1
+		]]>
+    </select>
+
+</mapper>
