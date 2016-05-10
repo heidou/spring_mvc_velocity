@@ -7,7 +7,7 @@
 
     <typeAliases>  
         <typeAlias alias="Student" type="com.mengka.model.StudentDO"/>
-
+        <typeAlias alias="Workmate" type="com.mengka.model.WorkmateDO"/>
          
     </typeAliases>  
     

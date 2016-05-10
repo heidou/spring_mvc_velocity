@@ -19,13 +19,16 @@
         INSERT INTO student
         ( id,
           name,
+
+
           create_time,
           modified_time
         ) VALUES (
           #{id},
           #{name},
+
           now(),
-		  now()
+		  now(),
         )
          ]]>
     </insert>

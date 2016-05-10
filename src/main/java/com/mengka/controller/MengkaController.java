@@ -2,7 +2,9 @@ package com.mengka.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.mengka.dao.StudentDAO;
+import com.mengka.dao.WorkmateDAO;
 import com.mengka.model.StudentDO;
+import com.mengka.model.WorkmateDO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -26,45 +28,25 @@ public class MengkaController {
 
     @Resource
     private StudentDAO studentDAO;
+    @Resource
+    private WorkmateDAO workmateDAO;
 
     @RequestMapping(value = "/selectById.do", method = { RequestMethod.GET, RequestMethod.POST })
     public String selectById(ModelMap map, HttpServletRequest request,
                         @RequestParam(required = false) String groupName) {
+
+        WorkmateDO workmateDO = new WorkmateDO();
+        workmateDO.setName("zhangsan");
+        workmateDO.setAddress("hangzhou");
+        workmateDAO.insert(workmateDO);
+
+        WorkmateDO workmateDO1 = workmateDAO.selectByIe(1212L);
 
         StudentDO studentDO = studentDAO.selectById(111L);
         log.info("studentDO = "+studentDO.getName());
         return "mengka/topic";
     }
 
-    @RequestMapping(value = "/topic.do", method = { RequestMethod.GET, RequestMethod.POST })
-    public String topic(ModelMap map, HttpServletRequest request,
-                        @RequestParam(required = false) String groupName) {
-        log.error("--------, a view of topic.vm..");
-        log.info("--------, #megnka# info ..");
-        return "mengka/topic";
-    }
-
-    @RequestMapping(value = "/saveTopic.do", method = { RequestMethod.GET, RequestMethod.POST })
-    public String saveTopic(ModelMap map, HttpServletRequest request) {
-        try {
-            String name = request.getParameter("name");
-            Integer type = Integer.parseInt(request.getParameter("type"));
-            String groupId = request.getParameter("groupId");
-            String ctype = request.getParameter("ctype");
-            String topic = request.getParameter("topic");
-            String userName = request.getParameter("userName");
 
 
-
-
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("status","1");
-            jsonObject.put("message","保存成功!");
-            map.put("result",jsonObject.toJSONString());
-        }
-        catch (Throwable e) {
-            log.error("saveTopic.do error! ",e);
-        }
-        return "mengka/success";
-    }
 }

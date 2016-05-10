@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="WorkmateDAO">
+    <resultMap id="WorkmateMap" type="com.mengka.model.WorkmateDO">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="create_time" property="createTime"/>
+        <result column="modified_time" property="modifiedTime"/>
+        <result column="address" property="address"/>
+    </resultMap>
+
+    <sql id="selectField">
+        <![CDATA[
+		SELECT id,name,address,create_time,modified_time FROM workmate
+		]]>
+    </sql>
+
+    <insert id="insert" parameterType="Workmate">
+        <![CDATA[
+        INSERT INTO workmate
+        ( id,
+          name,
+          address,
+          create_time,
+          modified_time
+        ) VALUES (
+          #{id},
+          #{name},
+          #{address},
+          now(),
+		  now()
+        )
+         ]]>
+    </insert>
+
+    <update id="update" parameterType="Workmate">
+        update workmate
+        <set>
+            <if test="name != null">
+                name = #{name} ,
+            </if>
+            modified_time = current_timestamp
+        </set>
+        where id = #{id}
+    </update>
+
+    <update id="delete" parameterType="Workmate">
+        delete workmate
+        <![CDATA[
+		    WHERE ID=#{id}
+		]]>
+    </update>
+
+    <select id="selectById" resultMap="WorkmateMap" parameterType="java.lang.Long">
+        <include refid="WorkmateDAO.selectField"/>
+        <![CDATA[
+		    WHERE ID=#{id} LIMIT 1
+		]]>
+    </select>
+
+</mapper>
