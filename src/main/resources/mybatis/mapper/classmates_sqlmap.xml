@@ -22,14 +22,12 @@
         ( id,
           name,
           age,
-
           create_time,
           modified_time
         ) VALUES (
           #{id},
           #{name},
           #{age},
-
           now(),
 		  now()
         )
@@ -55,10 +53,24 @@
     </update>
 
     <select id="selectById" resultMap="ClassmatesMap" parameterType="java.lang.Long">
-        <include refid="ClassmatesDAO.selectField"/>
-        <![CDATA[
+    <include refid="ClassmatesDAO.selectField"/>
+    <![CDATA[
 		    WHERE ID=#{id} LIMIT 1
 		]]>
+</select>
+
+    <select id="selectByName" resultMap="ClassmatesMap" parameterType="java.lang.String">
+        <include refid="ClassmatesDAO.selectField"/>
+        <![CDATA[
+		    WHERE Name =#{name}
+		]]>
+    </select>
+
+    <select id="selectByAge" resultMap="ClassmatesMap" parameterType="java.lang.String">
+        <include refid="ClassmatesDAO.selectField"/>
+        <![CDATA[
+             WHERE Age =#{age}
+        ]]>
     </select>
 
 </mapper>
