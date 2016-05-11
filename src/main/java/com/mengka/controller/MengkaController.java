@@ -1,8 +1,10 @@
 package com.mengka.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.mengka.dao.ClassmatesDAO;
 import com.mengka.dao.StudentDAO;
 import com.mengka.dao.WorkmateDAO;
+import com.mengka.model.ClassmatesDO;
 import com.mengka.model.StudentDO;
 import com.mengka.model.WorkmateDO;
 import org.slf4j.Logger;
@@ -28,19 +30,25 @@ public class MengkaController {
 
     @Resource
     private StudentDAO studentDAO;
+
     @Resource
-    private WorkmateDAO workmateDAO;
+    private ClassmatesDAO classmatesDAO;
 
     @RequestMapping(value = "/selectById.do", method = { RequestMethod.GET, RequestMethod.POST })
     public String selectById(ModelMap map, HttpServletRequest request,
                         @RequestParam(required = false) String groupName) {
+        ClassmatesDO classmatesDO = new ClassmatesDO();
+        classmatesDO.setId(112L);
+        classmatesDO.setName("吴刚");
+        classmatesDO.setAge("23");
 
-        WorkmateDO workmateDO = new WorkmateDO();
-        workmateDO.setName("zhangsan");
-        workmateDO.setAddress("hangzhou");
-        workmateDAO.insert(workmateDO);
 
-        WorkmateDO workmateDO1 = workmateDAO.selectByIe(1212L);
+
+      classmatesDAO.insert(classmatesDO);
+
+       ClassmatesDO classmatesDO1 = classmatesDAO.selectById(112L);
+
+
 
         StudentDO studentDO = studentDAO.selectById(111L);
         log.info("studentDO = "+studentDO.getName());

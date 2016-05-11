@@ -10,5 +10,5 @@ public interface WorkmateDAO {
     WorkmateDO selectByIe(long id);
     void insert(WorkmateDO workmateDO);
     void update(WorkmateDO workmateDO);
-    void delect(WorkmateDO workmateDO);
+    void delete(WorkmateDO workmateDO);
 }

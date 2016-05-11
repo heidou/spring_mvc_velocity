@@ -32,8 +32,8 @@ public class WorkmateDAOImpl extends SqlSessionDaoSupport implements WorkmateDAO
     }
 
     @Override
-    public void delect(WorkmateDO workmateDO) {
-      getSqlSession().delete("WorkmateDAO.delect",workmateDO);
+    public void delete(WorkmateDO workmateDO) {
+      getSqlSession().delete("WorkmateDAO.delete",workmateDO);
     }
     @Resource
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
