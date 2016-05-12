@@ -47,6 +47,7 @@ public class ClassmatesImpl extends SqlSessionDaoSupport implements ClassmatesDA
     public void delete(ClassmatesDO classmatesDO) {
         getSqlSession().delete("Classmates.delete",classmatesDO);
     }
+
     @Resource
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         super.setSqlSessionFactory(sqlSessionFactory);

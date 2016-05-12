@@ -42,7 +42,7 @@ public class MengkaController {
     public String selectById(ModelMap map, HttpServletRequest request,
                         @RequestParam(required = false) String name) {
         ClassmatesDO classmatesDO = new ClassmatesDO();
-        classmatesDO.setName(name);
+        classmatesDO.setName("name");
         classmatesDO.setAge("23");
       classmatesDAO.insert(classmatesDO);
 
@@ -57,7 +57,7 @@ public class MengkaController {
                               @RequestParam(required = false) String name)throws Exception{
         response.sendRedirect("http://127.0.0.1:8081/mk/selectById.do");
 
-        List<ClassmatesDO> list = classmatesDAO.selectByName("ximen");
+        List<ClassmatesDO> list = classmatesDAO.selectByName("imp");
         log.info("list size = "+list.size());
         return "mengka/topic";
     }
