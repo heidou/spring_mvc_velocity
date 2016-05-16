@@ -43,9 +43,9 @@ public class MengkaController {
                         @RequestParam(required = false) String name) {
         ClassmatesDO classmatesDO = new ClassmatesDO();
         classmatesDO.setId(190L);
-        classmatesDO.setName("西蒙");
+        classmatesDO.setName("xixi");
         classmatesDO.setAge("20");
-        classmatesDO.setSex("男");
+        classmatesDO.setSex("nan");
       classmatesDAO.insert(classmatesDO);
 
         ClassmatesDO classmatesDO1 = classmatesDAO.selectById(124L);
@@ -57,7 +57,7 @@ public class MengkaController {
     @RequestMapping(value = "/selectByName.do", method = { RequestMethod.GET, RequestMethod.POST })
      public String selectByName(ModelMap map, HttpServletRequest request,HttpServletResponse response,
                               @RequestParam(required = false) String name)throws Exception{
-        response.sendRedirect("http://127.0.0.1:8081/mk/selectById.do");
+        response.sendRedirect("http://127.0.0.1:8081/mk/selectById.do");//外部重定向，，退出登录
 
         List<ClassmatesDO> list = classmatesDAO.selectByName("imp");
         log.info("list size = "+list.size());
@@ -66,7 +66,7 @@ public class MengkaController {
     @RequestMapping(value = "/selectByAge.do", method = { RequestMethod.GET, RequestMethod.POST })
     public String selectByAge(ModelMap map, HttpServletRequest request,HttpServletResponse response,String name)throws Exception{
         log.info("name = "+name);
-        RequestDispatcher rd = request.getRequestDispatcher("/mk/selectById.do");
+        RequestDispatcher rd = request.getRequestDispatcher("/mk/selectById.do");//内部重定向跳转指定页面
         rd.forward(request,response);
 
         List<ClassmatesDO> list = classmatesDAO.selectByAge("24");
@@ -74,6 +74,9 @@ public class MengkaController {
         return "mengka/topic";
     }
 
-
+    @RequestMapping(value = "/selectBylogin.do", method = { RequestMethod.GET, RequestMethod.POST })
+    public String selectBylogin(ModelMap map, HttpServletRequest request,HttpServletResponse response,String name){
+        return "mengka/login";
+    }
 
 }
