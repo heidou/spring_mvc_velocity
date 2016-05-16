@@ -11,6 +11,7 @@ public class ClassmatesDO implements Serializable{
     private Long id;
     private String name;
     private String age;
+    private String sex;
 
     private Date createTime;
     private Date modifiedTime;
@@ -55,5 +56,13 @@ public class ClassmatesDO implements Serializable{
 
     public void setModifiedTime(Date modifiedTime) {
         this.modifiedTime = modifiedTime;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 }

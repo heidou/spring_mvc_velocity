@@ -5,14 +5,14 @@
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="age" property="age"/>
-
+        <result column="sex" property="sex"/>
         <result column="create_time" property="createTime"/>
         <result column="modified_time" property="modifiedTime"/>
     </resultMap>
 
     <sql id="selectField">
         <![CDATA[
-		SELECT id,name,age,create_time,modified_time FROM classmates
+		SELECT id,name,age,sex,create_time,modified_time FROM classmates
 		]]>
     </sql>
 
@@ -22,12 +22,14 @@
         ( id,
           name,
           age,
+          sex,
           create_time,
           modified_time
         ) VALUES (
           #{id},
           #{name},
           #{age},
+          #{sex},
           now(),
 		  now()
         )

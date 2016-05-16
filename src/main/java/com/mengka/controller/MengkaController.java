@@ -42,8 +42,10 @@ public class MengkaController {
     public String selectById(ModelMap map, HttpServletRequest request,
                         @RequestParam(required = false) String name) {
         ClassmatesDO classmatesDO = new ClassmatesDO();
-        classmatesDO.setName("name");
-        classmatesDO.setAge("23");
+        classmatesDO.setId(190L);
+        classmatesDO.setName("西蒙");
+        classmatesDO.setAge("20");
+        classmatesDO.setSex("男");
       classmatesDAO.insert(classmatesDO);
 
         ClassmatesDO classmatesDO1 = classmatesDAO.selectById(124L);
